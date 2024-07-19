@@ -30,13 +30,18 @@ int main()
             // 對每一組進行插入排序，只是i++改為i+=gap
             for (int i = group + gap; i < arrayLength; i += gap)
             {
-                for (int j = i; j - gap >= 0; j -= gap)
+                int key = a[i], j = i - gap;
+                while (j >= 0 && key < a[j])
                 {
-                    cout << j << " " << j - gap << "    ";
+                    a[j + gap] = a[j];
+                    cout << j << "        move to       " << j + gap << "    ";
+                    j -= gap;
+
                     printa(a, arrayLength);
-                    if (a[j] < a[j - gap])
-                        swap(a, j, j - gap);
                 }
+                a[j + gap] = key;
+                cout << key << " insert into index at " << j + gap << "    ";
+                printa(a, arrayLength);
             }
         }
     }
