@@ -6,6 +6,14 @@ void swap(int a[], int index1, int index2)
     a[index1] = a[index2];
     a[index2] = temp;
 }
+void printa(int a[], int arrayLength)
+{
+    for (int k = 0; k < arrayLength; k++)
+    {
+        cout << a[k] << " ";
+    }
+    cout << endl;
+}
 int main()
 {
     int a[10] = {5, 7, 2, 3, 8, 6, 1, 9, 4, 10};
@@ -13,20 +21,15 @@ int main()
     int step = 1;
     for (int i = 1; i < arrayLength; i++)
     {
-        for (int j = i; j > 0; j--)
+        int key = a[i], j = i - 1;
+        while (j >= 0 && key < a[j])
         {
-            if (a[j] < a[j - 1])
-                swap(a, j, j - 1);
+            a[j + 1] = a[j];
+            j--;
         }
-
+        a[j + 1] = key;
         cout << "Step " << i << "  ";
-        for (int k = 0; k < arrayLength; k++)
-        {
-            cout << a[k] << " ";
-            if (k == i)
-                cout << " | ";
-        }
-        cout << endl;
+        printa(a, arrayLength);
     }
 
     cout << "--- After Insertion Sort ---" << endl;
