@@ -18,13 +18,12 @@ int main()
 {
     int a[10] = {5, 7, 2, 3, 8, 6, 1, 9, 4, 10};
     int arrayLength = sizeof(a) / sizeof(*a);
-    int step = 1;
     for (int i = 1; i < arrayLength; i++)
     {
         int key = a[i], j = i - 1;
         while (j >= 0 && key < a[j])
         {
-            a[j + 1] = a[j];
+            a[j + 1] = a[j]; // 陣列向右移
             j--;
         }
         a[j + 1] = key;
@@ -33,9 +32,6 @@ int main()
     }
 
     cout << "--- After Insertion Sort ---" << endl;
-    for (int i = 0; i < arrayLength; i++)
-    {
-        cout << a[i] << " -> ";
-    }
+    printa(a, arrayLength);
     return 0;
 }
