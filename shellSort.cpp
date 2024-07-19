@@ -20,20 +20,22 @@ int main()
 {
     int a[10] = {5, 7, 10, 3, 8, 6, 1, 2, 4, 9};
     int arrayLength = sizeof(a) / sizeof(*a);
-    int count = 1, n = 1;
-    for (int step = floor(arrayLength / 2); step > 1; step = floor(step / 2))
+    // 計算gap，每次砍半
+    for (int gap = floor(arrayLength / 2); gap > 1; gap = floor(gap / 2))
     {
-        cout << "gap " << step << endl;
-        for (int index = 0; index < step; index++)
+        cout << "gap " << gap << endl;
+        // 處理第group組的排序(group0 = index[0 2 4 6 8], group1 = index[1 3 5 7 9]...)
+        for (int group = 0; group < gap; group++)
         {
-            for (int i = index + step; i < arrayLength; i += step)
+            // 對每一組進行插入排序，只是i++改為i+=gap
+            for (int i = group + gap; i < arrayLength; i += gap)
             {
-                for (int j = i; j - step >= 0; j -= step)
+                for (int j = i; j - gap >= 0; j -= gap)
                 {
-                    cout << j << " " << j - step << "    ";
+                    cout << j << " " << j - gap << "    ";
                     printa(a, arrayLength);
-                    if (a[j] < a[j - step])
-                        swap(a, j, j - step);
+                    if (a[j] < a[j - gap])
+                        swap(a, j, j - gap);
                 }
             }
         }
