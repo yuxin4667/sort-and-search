@@ -18,21 +18,25 @@ void printa(int a[], int arrayLength)
 
 int main()
 {
-    int a[10] = {5, 7, 2, 3, 8, 6, 1, 9, 4, 10};
+    int a[10] = {5, 7, 10, 3, 8, 6, 1, 2, 4, 9};
     int arrayLength = sizeof(a) / sizeof(*a);
     int count = 1, n = 1;
     for (int step = floor(arrayLength / 2); step > 1; step = floor(step / 2))
     {
         cout << "gap " << step << endl;
-        for (int i = step; i < arrayLength; i++)
+        for (int index = 0; index < step; index++)
         {
-            for (int j = i; j - step >= 0; j -= step)
+            for (int i = index + step; i < arrayLength; i += step)
             {
-                if (a[j] < a[j - step])
-                    swap(a, j, j - step);
+                for (int j = i; j - step >= 0; j -= step)
+                {
+                    cout << j << " " << j - step << "    ";
+                    printa(a, arrayLength);
+                    if (a[j] < a[j - step])
+                        swap(a, j, j - step);
+                }
             }
         }
-        printa(a, arrayLength);
     }
     for (int i = 1; i < arrayLength; i++)
     {
