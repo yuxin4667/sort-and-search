@@ -59,7 +59,6 @@ int main()
 {
     int a[13] = {10, 7, 5, 3, 8, 6, 1, 2, 9, 4, 11, 13, 12};
     int arrayLength = sizeof(a) / sizeof(*a);
-    // partition(a, 0, arrayLength - 1);
     HeapSort(a, 0, arrayLength);
     cout << "--- After Heap Sort ---" << endl;
     printa(a, arrayLength);
