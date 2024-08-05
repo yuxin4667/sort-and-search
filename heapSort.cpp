@@ -35,48 +35,30 @@ void Heapify(int *a, int parentIndex, int lastIndex)
             break;
         }
     }
-
     return;
 }
-
-void HeapSort(int *a, int parentIndex, int arrayLength)
+void BuildMaxHeap(int *a, int arrayLength)
 {
-    // build a max_heap
-    for (int i = (arrayLength - 1) / 2; i >= 0; i--)
+    for (int i = (arrayLength - 1) / 2; i > 0; i--)
     {
         Heapify(a, i, arrayLength);
     }
-    printa(a, arrayLength);
-    for (int i = arrayLength - 1; i >= 0; i--)
-    {
-        swap(a, 0, i);
-        printa(a, arrayLength);
-        Heapify(a, 0, i - 1);
-    }
-    return;
 }
 int main()
 {
     int a[] = {-1, 10, 7, 5, 3, 8, 6, 1, 2, 9, 4, 11, 13, 12};
     int b[] = {-1, 10, 7, 5, 3, 8, 6, 1, 2, 9, 4, 11, 13, 12};
     int arrayLength = sizeof(a) / sizeof(*a);
-    // int arrayIndex = arrayLength - 1;
 
-    // buildMaxHeap
-    for (int i = (arrayLength - 1) / 2; i > 0; i--)
-    {
-        Heapify(a, i, arrayLength);
-        printa(a, arrayLength);
-    }
-    printa(a, arrayLength);
+    BuildMaxHeap(a, arrayLength);
+    ;
 
     for (int i = arrayLength - 1; i > 0; i--)
     {
         swap(a, 1, i);
         Heapify(a, 1, i - 1);
     }
-    cout << "--- After Quick  ---" << endl;
-    // buildMaxHeap(b, arrayLength);
+    cout << "--- After Heap Sort ---" << endl;
     printa(a, arrayLength);
     return 0;
 }
